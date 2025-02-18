@@ -1,0 +1,5 @@
+pillow==10.2.0
+torch==2.5.0
+transformers==4.49.0
+numpy==1.26.4
+torchvision==0.20.0

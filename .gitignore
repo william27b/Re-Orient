@@ -1,0 +1,6 @@
+image_processor/*
+model/*
+__pycache__/*
+venv/*
+./venv/*
+venv
