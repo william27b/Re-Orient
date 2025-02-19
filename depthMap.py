@@ -39,5 +39,9 @@ def createDepthMap(image, save_path='depthmap.jpg'):
     return depth
 
 if __name__ == "__main__":
+    # input RGB image, which is an array of size (width, height, 3)
     image = Image.open('tiger.jpg')
-    createDepthMap(image)
+    # a 2D array of size (width, height), containing the z-coordinate of each pixel indicating how far the pixel is from the camera
+    # We call this 2D array the "depth map" of the image
+    depthMap = createDepthMap(image)
+    print(depthMap)
