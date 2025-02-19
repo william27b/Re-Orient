@@ -1,6 +1,7 @@
 import math
 import numpy as np
 from PIL import Image
+import os
 
 # def getPixelDepth(x, y):
 #     return 0
@@ -36,7 +37,7 @@ def getNewYMappings(yMap, depthMap, yRotation):
     newYMappings = distanceMap * np.cos(rotationMap)
     return newYMappings
 
-def rotateImage(imgPath, depthPath, xRotation, yRotation, depthScalar):
+def rotateImage(imgPath, depthPath, xRotation, yRotation, depthScalar, save_path='rotated.jpg'):
     # load image
     image = Image.open(imgPath)
     image = np.array(image)
@@ -81,6 +82,7 @@ def rotateImage(imgPath, depthPath, xRotation, yRotation, depthScalar):
 
     # show output image
     finalImagePIL = Image.fromarray(finalImage, 'RGB')
+    finalImagePIL.save(save_path)
     finalImagePIL.show()
 
 if __name__ == "__main__":
@@ -115,4 +117,16 @@ when rotating the camera
 
     depthScalar = float(input('depth scalar (default 1): '))
 
-    rotateImage('tiger.jpg', 'depthmap.jpg', xRotation, yRotation, depthScalar)
+    image_path = input('path to load image: ')
+
+    if not os.path.exists(image_path):
+        raise ValueError('path does not exist')
+    
+    depth_map_path = input('path to load depth map: ')
+
+    if not os.path.exists(depth_map_path):
+        raise ValueError('path does not exist')
+    
+    rotated_image_path = input('path to save rotated image: ')
+
+    rotateImage(image_path, depth_map_path, xRotation, yRotation, depthScalar, rotated_image_path)
